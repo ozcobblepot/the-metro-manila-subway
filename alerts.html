@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Alerts — Metro Manila Subway</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/logo2.png" alt="Metro Manila Subway Logo" class="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAlerts" aria-controls="navbarNavAlerts" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAlerts">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Riding MMS
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="transit.html">Transit Services</a></li>
+                            <li><a class="dropdown-item" href="accessing.html">Accessing MMS</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fares.html">Fares</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="alerts.html">Alerts</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            About Us
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html#contact">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="py-5">
+    <div class="container">
+        <div class="py-5 text-center" style="padding-top: calc(var(--navbar-height) + 2rem);">
+            <h1 class="h3 text-primary">Service Alerts</h1>
+            <p class="text-muted mb-0">Report an issue or send a quick alert to site operators.</p>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <form id="alertForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Station</label>
+                                    <select id="station" class="form-select" required></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Issue Type</label>
+                                    <select id="issueType" class="form-select" required>
+                                        <option value="Delay">Delay</option>
+                                        <option value="Mechanical">Mechanical</option>
+                                        <option value="Power">Power Outage</option>
+                                        <option value="Safety">Safety / Incident</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">Description</label>
+                                    <textarea id="description" class="form-control" rows="3" placeholder="Describe the problem"></textarea>
+                                </div>
+
+                                <div class="col-md-4 d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="urgent">
+                                        <label class="form-check-label" for="urgent">Mark as urgent</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 text-end">
+                                    <button type="button" id="autoAlert" class="btn btn-outline-danger btn-sm me-2" title="Send a quick prefilled alert">Auto-Alert</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Send Alert</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Bootstrap Carousel Slideshow -->
+                <div id="alertsCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#alertsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#alertsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#alertsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="assets/image1.jpg" class="d-block w-100" alt="Service Alerts">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Real-Time Updates</h5>
+                        <p>Get instant notifications on service changes and delays.</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="assets/image1.jpg" class="d-block w-100" alt="Emergency Contact">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Emergency Support</h5>
+                        <p>24/7 assistance for any urgent situations.</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="assets/image1.jpg" class="d-block w-100" alt="Report Issues">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Report Problems</h5>
+                        <p>Easy ways to report issues and get help.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#alertsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#alertsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+
+                <div class="d-flex justify-content-end mb-3">
+                   <a href="index.html" class="btn btn-link">← Back to Home</a>
+                </div>
+
+                <div id="alertsListCard" class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Recent alerts (local)</h6>
+                        <div id="alertsList" style="max-height:300px;overflow:auto"></div>
+                    </div>
+                </div>
+
+                <div id="statusArea" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-primary text-white py-4 mt-5">
+    <div class="container text-center">
+        <small>&copy; 2023 Metro Manila Subway</small>
+    </div>
+</footer>
+
+<!-- page scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // station names
+    const stations = [
+        "East Valenzuela","Quirino Highway","Tandang Sora","North Avenue",
+        "Quezon Avenue","East Avenue","Anonas","Camp Aguinaldo",
+        "Ortigas","Shaw Boulevard","Kalayaan Avenue","BGC",
+        "Lawton Avenue","Senate-DepEd","NAIA Terminal 3","FTI","Bicutan"
+    ];
+
+    function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function populateStations() {
+        const $sel = $('#station').empty();
+        stations.forEach(s => $sel.append($('<option>').val(s).text(s)));
+    }
+
+    function loadAlerts() {
+        const data = JSON.parse(localStorage.getItem('mms_alerts') || '[]');
+        const $container = $('#alertsList').empty();
+        if (data.length === 0) {
+            $container.html('<div class="text-muted">No alerts submitted yet.</div>');
+            return;
+        }
+        data.slice().reverse().forEach(a => {
+            const $el = $('<div>').addClass('mb-2 border-bottom pb-2');
+            $el.html(
+                '<div class="d-flex justify-content-between"><strong>' + escapeHtml(a.issueType) + ' — ' + escapeHtml(a.station) + '</strong><small>' +
+                new Date(a.time).toLocaleString() + (a.urgent? ' • URGENT':'' ) + '</small></div>' +
+                '<div class="text-muted small">' + escapeHtml(a.description || '-') + '</div>'
+            );
+            $container.append($el);
+        });
+    }
+
+    function saveAlert(alert) {
+        const arr = JSON.parse(localStorage.getItem('mms_alerts') || '[]');
+        arr.push(alert);
+        localStorage.setItem('mms_alerts', JSON.stringify(arr));
+    }
+
+    function showStatus(msg, type='success') {
+        const $area = $('#statusArea');
+        $area.html('<div class="alert alert-' + type + ' alert-sm" role="alert">' + escapeHtml(msg) + '</div>');
+        setTimeout(()=> $area.empty(), 4000);
+    }
+
+    async function postToServer(payload) {
+        try {
+            const res = await fetch('/api/alerts', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(payload)
+            });
+            return res.ok;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    async function submitAlert(e, data) {
+        if (e) e.preventDefault();
+        const payload = data || {
+            station: $('#station').val(),
+            issueType: $('#issueType').val(),
+            description: $('#description').val().trim(),
+            urgent: $('#urgent').is(':checked'),
+            time: new Date().toISOString()
+        };
+
+        const sent = await postToServer(payload);
+        saveAlert(payload);
+        loadAlerts();
+
+        if (sent) showStatus('Alert sent to server.', 'success');
+        else showStatus('Alert saved locally (no server).', 'warning');
+    }
+
+    function autoAlert() {
+        const payload = {
+            station: $('#station').val() || stations[0],
+            issueType: 'Safety',
+            description: 'Automatic quick alert: possible incident reported at station.',
+            urgent: true,
+            time: new Date().toISOString()
+        };
+        submitAlert(null, payload);
+    }
+
+    $(function(){
+        populateStations();
+        loadAlerts();
+
+        $('#alertForm').on('submit', submitAlert);
+        $('#autoAlert').on('click', autoAlert);
+    });
+    </script>
+
+<!-- add these scripts near the end of <body> (before bootstrap.bundle.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

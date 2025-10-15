@@ -13,22 +13,17 @@ body {
 
 .navbar {
     background: white !important;
+         --seat-size: 44px;
+         --seat-gap: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
 }
-
-.nav-link {
-    font-family: 'Helvetica', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: black !important;
-    transition: color 0.3s ease;
-}
-
 .nav-link:hover {
     color: var(--primary-blue) !important;
 }
@@ -36,6 +31,12 @@ body {
 .dropdown-menu {
     background-color: white;
     border: none;
+    .seat-row .seat-group { display: flex; gap: var(--seat-gap); }
+    .col-group { width: calc(2 * var(--seat-size) + var(--seat-gap)); display: flex; justify-content: space-between; align-items: center; }
+
+    /* nudge left label group a few pixels to the right to align A/B with seats */
+    .seat-header .col-group:first-of-type { transform: translateX(16px); }
+    .seat-header .col-group:last-of-type { transform: translateX(-14px); }
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -48,24 +49,12 @@ body {
     background-image: url('assets/image1.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+         width: var(--seat-size); /* match seat size so label centers over seat */
     position: relative;
-    padding: 100px 0;
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
+    padding: 40px 0;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(58, 90, 154, 0.8));
-    z-index: 1;
-}
+
 
 .hero .container {
     position: relative;
@@ -142,6 +131,349 @@ body {
     background-color: #f8f9fa;
 }
 
+.plan-card {
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 12px;
+    padding: 24px;
+    min-height: 420px;
+    box-shadow: 0 8px 30px rgba(4, 21, 65, 0.12);
+}
+
+.plan-card h4,
+.plan-card .form-label,
+.plan-card .form-check-label {
+    color: #ffffff;
+}
+
+.plan-card .form-control {
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: #ffffff;
+    color: #0b1330;
+}
+
+.plan-card .input-group-text {
+    background: #ffffff;
+    color: var(--primary-blue);
+    border: none;
+}
+
+.card-divider {
+    height: 2px;
+    width: 100%;
+    background: rgba(255,255,255,0.18);
+}
+
+.seat-card .card-divider {
+    background: rgba(4,36,62,0.06);
+}
+
+.service-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(4, 21, 65, 0.08);
+    border: 1px solid #e9eef8;
+    min-height: 420px;
+}
+
+.service-card h5 {
+    font-weight: 700;
+}
+
+.active-service {
+    background: linear-gradient(90deg, rgba(11,98,184,0.08), rgba(10,74,138,0.06));
+    padding: 8px 12px;
+    border-radius: 30px;
+}
+
+.badge {
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.seat-card {
+    background: var(--light-blue);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(4, 21, 65, 0.06);
+    border: 1px solid #ddebff;
+    min-height: 420px;
+    color: #04243e;
+}
+
+.train-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.seat-maps {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Train selector improvements: space buttons and show train icon at left */
+#trainSelector.train-selector { display: flex; gap: 10px; align-items: center; }
+#trainSelector.train-selector .btn { padding-left: 10px; display:flex; align-items:center; gap:8px; }
+#trainSelector.train-selector .train-btn-icon { width:20px; height:20px; margin-right:6px; }
+/* extra separation: make Train 1 visually separated from others */
+#trainSelector.train-selector .btn[data-train="1"] { margin-right: 18px; }
+
+/* make each train-map card visually separated */
+.train-map { margin-bottom: 12px; }
+
+.train-map {
+    background: linear-gradient(180deg, #ffffff, #f7fbff);
+    border-radius: 8px;
+    padding: 18px;
+    border: 1px solid #e6f0ff;
+    width: 100%;
+}
+
+/* make train-map a flex container so the carriage can be centered while map stays full width */
+.train-map { display: flex; justify-content: center; }
+
+.train-line {
+    height: 18px;
+    background: #cfe6ff;
+    border-radius: 4px;
+    margin: 8px 0 12px 0;
+    position: relative;
+}
+
+.train-line::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    width: 120px;
+    height: 8px;
+    background: linear-gradient(90deg, rgba(11,98,184,0.12), rgba(10,74,138,0.08));
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+/* Main cabin title */
+.main-cabin {
+    font-weight: 600;
+    color: #6b7c8a;
+    margin: 8px 0 12px 0;
+    font-size: 1.6rem;
+}
+
+/* train side rails (top-down view decorative) */
+.train-map::before, .train-map::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    width: 18px;
+    background: linear-gradient(180deg, rgba(107,124,138,0.12), rgba(107,124,138,0.08));
+    border-radius: 4px;
+}
+    .rows-container { max-height: none; overflow: visible; }
+
+    /* full-height vertical lines on both sides of the carriage */
+    .carriage { position: relative; }
+    .carriage::before, .carriage::after { content: ''; position: absolute; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg,#d8e6fb,#eaf6ff); }
+    .carriage::before { left: -18px; }
+    .carriage::after { right: -18px; }
+
+.train-map::after { right: 8px; }
+
+/* simplified seat visuals: plain colored boxes */
+.seat {
+    width: 44px;
+    height: 44px;
+    margin: 4px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    --seat-fill: #8b63e6; /* default purple */
+}
+
+.seat::before {
+    /* main seat body */
+    content: '';
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 6%;
+    height: 60%;
+    background: var(--seat-fill);
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(11,50,120,0.06), inset 0 -6px 12px rgba(255,255,255,0.06);
+}
+
+.seat::after {
+    /* small headrest/cap */
+    content: '';
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56%;
+    height: 22%;
+    background: var(--seat-fill);
+    border-radius: 6px;
+    box-shadow: inset 0 -4px 6px rgba(255,255,255,0.04);
+}
+
+.seat { background: transparent; border: none; }
+.seat.available { --seat-fill: #9ea3a8; } /* neutral grey for available seats */
+.seat.unavailable { --seat-fill: #e9ecef; opacity: 0.85; } /* light disabled */
+.seat.selected { --seat-fill: var(--primary-blue); } /* selected uses primary blue */
+.seat-star { display: none; }
+
+/* left and right row numbers next to seat groups */
+.seat-row .row-num-left, .seat-row .row-num-right { width: 36px; display:flex; align-items:center; justify-content:center; color: #586777; font-weight:700; }
+
+.door-box { display: none !important; }
+.door-slot { display: none !important; }
+.door-vertical { display: none !important; }
+
+/* exit rows style (striped) */
+.exit-row { background: repeating-linear-gradient(135deg, rgba(220,53,69,0.06) 0, rgba(220,53,69,0.06) 10px, transparent 10px, transparent 20px); border: 1px solid rgba(220,53,69,0.12); }
+
+.seat-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+
+.legend { padding: 6px 10px; border-radius: 8px; font-weight: 600; }
+.legend.available { background: #e6fff0; color: #0b3d22; border: 1px solid #28a745; }
+.legend.selected { background: var(--primary-blue); color: white; border: 1px solid var(--primary-blue); }
+.legend.unavailable { background: #ffe6e6; color: #5a1515; border: 1px solid #dc3545; }
+
+.legend-list { gap: 12px; }
+.legend-item { gap: 8px; }
+.legend-box { width: 18px; height: 18px; border-radius: 4px; display: inline-block; }
+.legend-box.available { background: #e6fff0; border: 1px solid #28a745; }
+.legend-box.selected { background: var(--primary-blue); border: 1px solid var(--primary-blue); }
+.legend-box.unavailable { background: #ffe6e6; border: 1px solid #dc3545; }
+.legend-box.door { background: #f0f0f0; border: 1px solid #cfcfcf; }
+
+/* carriage layout */
+.carriage {
+    padding: 10px 12px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* subtle shadowing and rounded ends to mimic train cabin */
+.carriage { padding: 10px 12px; max-width: 520px; margin: 0 auto; }
+
+.seat-header, .seat-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.seat-body { max-width: 520px; margin: 0 auto; }
+
+.row-label {
+    width: 36px;
+    text-align: center;
+    color: #657789;
+    font-weight: 600;
+}
+
+.col-label {
+    width: 48px; /* roughly seats' outer width (seat + margins) to align letters above seats */
+    text-align: center;
+    color: #0b1330;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2px;
+    .col-label {
+        width: var(--seat-size); /* match seat size so label centers over seat */
+        text-align: center;
+        color: #0b1330;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+}
+
+.rows-container { max-height: none; overflow: visible; }
+
+/* ensure aisle doesn't add extra visual gap in header/footer */
+.seat-header .aisle, .seat-footer .aisle { width: 36px; height: 0; }
+.seat-header .row-label { width: 52px; }
+
+.door-divider { height: 18px; background: #f3f6f9; border-left: 4px solid #d8e6fb; border-right: 4px solid #d8e6fb; border-radius: 6px; }
+
+/* removed duplicate seat background/border rules so seat visuals come only from pseudo-elements and --seat-fill */
+
+.door-row { display: flex; justify-content: center; }
+.door-vertical { width: 16px; height: 40px; background: #f0f0f0; border: 2px solid #d8e6fb; border-radius: 4px; }
+
+/* vertical side line between numbers and seats */
+.side-line { width: 2px; height: 44px; background: linear-gradient(180deg,#d8e6fb,#eaf6ff); margin: 0 8px; }
+
+.door-row .row-num-left, .door-row .row-num-right { width:36px; }
+
+/* container for double doors: place one near left seats and one near right seats */
+.doors-container { width: 100%; padding: 0 8px; box-sizing: border-box; }
+.doors-container .door-vertical { width: 16px; height: 44px; }
+.door-row { padding: 6px 0; }
+
+/* chair icon styling for door indicators */
+.door-icon {
+    width: 20px;
+    height: 20px;
+    color: #6b7c93; /* subtle gray-blue */
+    background: transparent;
+}
+.doors-container svg.door-icon { display: block; }
+
+/* slightly larger door icons for visual parity with airplane attachment */
+.doors-container svg.door-icon { width: 20px; height: 20px; color: #6b7c93; }
+
+/* layout tweak: center row numbers between seat groups */
+.seat-row { justify-content: center; }
+.seat-row .seat-group { display: flex; gap: 12px; }
+.row-label { width: 60px; text-align: center; }
+.door-row .door-slot { width: 120px; display: flex; justify-content: center; margin: 0 6px; }
+
+@media (max-width: 768px) {
+    .col-label, .seat-row .seat { width: 40px; height: 32px; }
+    .row-label { width: 28px; }
+}
+
+.train {
+    border: 1px solid #eef3fb;
+    padding: 12px;
+    border-radius: 8px;
+    background: #f8fbff;
+}
+
+.train h6 {
+    margin: 0 0 8px 0;
+}
+
+.seats {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.seat { padding: 0; background: transparent; border: 0; }
+
+.seat.selected { outline: none; }
+
+/* keyboard focus styling for seats (accessibility) */
+.seat:focus-visible { outline: 2px solid rgba(58,90,154,0.18); outline-offset: 4px; }
+
+.seat.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
 .highlights {
     background-color: white;
 }
@@ -212,8 +544,8 @@ footer {
     }
 
     .hero {
-        padding: 60px 0;
-        text-align: center;
+        padding: 30px 0;
+        text-align: left;
     }
 
     .hero h2 {
@@ -236,5 +568,11 @@ footer {
     
     .btn-lg {
         padding: 10px 20px;
+    }
+    .hero .row g-4 {
+        gap: 1rem;
+    }
+    .plan-card {
+        min-height: auto;
     }
 }
